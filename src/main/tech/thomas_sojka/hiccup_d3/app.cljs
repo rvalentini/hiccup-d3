@@ -29,16 +29,15 @@
               [:svg {:viewBox (str "0 0 " size " " size)}
                (map-indexed
                 (fn [idx {:keys [letter frequency]}]
-                  [:g {:key idx :transform (str "translate("0 "," (y idx) ")")}
+                  [:g {:key idx :transform (str "translate(" 0 "," (y idx) ")")}
                    [:rect {:x (x 0)
                            :height (.bandwidth y)
                            :fill (color letter)
-                           :width (x frequency)}]
-                   ])
+                           :width (x frequency)}]])
                 data)
                (map-indexed
                 (fn [idx {:keys [letter frequency]}]
-                  [:g {:key idx :transform (str "translate("0 "," (y idx) ")")}
+                  [:g {:key idx :transform (str "translate(" 0 "," (y idx) ")")}
                    [:text {:x 20
                            :y (+ (/ (.bandwidth y) 2) 1)
                            :dominant-baseline "middle"} (str frequency)]
@@ -60,16 +59,15 @@
         [:svg {:viewBox (str "0 0 " size " " size)}
          (map-indexed
           (fn [idx {:keys [letter frequency]}]
-            [:g {:key idx :transform (str "translate("0 "," (y idx) ")")}
+            [:g {:key idx :transform (str "translate(" 0 "," (y idx) ")")}
              [:rect {:x (x 0)
                      :height (.bandwidth y)
                      :fill (color letter)
-                     :width (x frequency)}]
-             ])
+                     :width (x frequency)}]])
           data)
          (map-indexed
           (fn [idx {:keys [letter frequency]}]
-            [:g {:key idx :transform (str "translate("0 "," (y idx) ")")}
+            [:g {:key idx :transform (str "translate(" 0 "," (y idx) ")")}
              [:text {:style {:font-size 8}
                      :x 17
                      :y (/ (.bandwidth y) 2)
@@ -103,34 +101,34 @@
                    [:path {:d (arc pie-arc) :fill (color (:name (.-data pie-arc)))}]
                    (when (> (- ^js (.-endAngle pie-arc) ^js (.-startAngle pie-arc)) 0.3)
                      [:text
-                      {:transform (str "translate("(.centroid arc-label pie-arc) ")") :text-anchor "middle"
+                      {:transform (str "translate(" (.centroid arc-label pie-arc) ")") :text-anchor "middle"
                        :dominant-baseline "middle"}
                       (:name (.-data pie-arc))])])
                 arcs)]))
    :code
    '(let [size 300
-                  pie (-> (d3/pie)
-                          (.sort nil)
-                          (.value (fn [d] (:value d))))
-                  arc (-> (d3/arc)
-                          (.innerRadius 0)
-                          (.outerRadius (/ size 2)))
-                  arc-label (let [r (* (/ size 2) 0.8)]
-                              (-> (d3/arc)
-                                  (.innerRadius r)
-                                  (.outerRadius r)))
-                  color (d3/scaleOrdinal d3/schemeCategory10)
-                  arcs (pie data)]
-              [:svg {:viewBox (str (- (/ size 2)) " " (- (/ size 2)) " " size " " size)}
-               (map-indexed
-                (fn [idx pie-arc]
-                  [:g {:key idx}
-                   [:path {:d (arc pie-arc) :fill (color (:name (.-data pie-arc)))}]
-                   (when (> (- ^js (.-endAngle pie-arc) ^js (.-startAngle pie-arc)) 0.25)
-                     [:text.text-xs
-                      {:transform (str "translate("(.centroid arc-label pie-arc) ")") :text-anchor "middle"}
-                      (:name (.-data pie-arc))])])
-                arcs)])})
+          pie (-> (d3/pie)
+                  (.sort nil)
+                  (.value (fn [d] (:value d))))
+          arc (-> (d3/arc)
+                  (.innerRadius 0)
+                  (.outerRadius (/ size 2)))
+          arc-label (let [r (* (/ size 2) 0.8)]
+                      (-> (d3/arc)
+                          (.innerRadius r)
+                          (.outerRadius r)))
+          color (d3/scaleOrdinal d3/schemeCategory10)
+          arcs (pie data)]
+      [:svg {:viewBox (str (- (/ size 2)) " " (- (/ size 2)) " " size " " size)}
+       (map-indexed
+        (fn [idx pie-arc]
+          [:g {:key idx}
+           [:path {:d (arc pie-arc) :fill (color (:name (.-data pie-arc)))}]
+           (when (> (- ^js (.-endAngle pie-arc) ^js (.-startAngle pie-arc)) 0.25)
+             [:text.text-xs
+              {:transform (str "translate(" (.centroid arc-label pie-arc) ")") :text-anchor "middle"}
+              (:name (.-data pie-arc))])])
+        arcs)])})
 
 (def line
   {:title "Line Chart"
@@ -157,28 +155,28 @@
                        :stroke (color 0)}]]))
    :code
    '(let [size 300
-                  pie (-> (d3/pie)
-                          (.sort nil)
-                          (.value (fn [d] (:value d))))
-                  arc (-> (d3/arc)
-                          (.innerRadius 0)
-                          (.outerRadius (/ size 2)))
-                  arc-label (let [r (* (/ size 2) 0.8)]
-                              (-> (d3/arc)
-                                  (.innerRadius r)
-                                  (.outerRadius r)))
-                  color (d3/scaleOrdinal d3/schemeCategory10)
-                  arcs (pie data)]
-              [:svg {:viewBox (str (- (/ size 2)) " " (- (/ size 2)) " " size " " size)}
-               (map-indexed
-                (fn [idx pie-arc]
-                  [:g {:key idx}
-                   [:path {:d (arc pie-arc) :fill (color (:name (.-data pie-arc)))}]
-                   (when (> (- ^js (.-endAngle pie-arc) ^js (.-startAngle pie-arc)) 0.25)
-                     [:text.text-xs
-                      {:transform (str "translate("(.centroid arc-label pie-arc) ")") :text-anchor "middle"}
-                      (:name (.-data pie-arc))])])
-                arcs)])})
+          pie (-> (d3/pie)
+                  (.sort nil)
+                  (.value (fn [d] (:value d))))
+          arc (-> (d3/arc)
+                  (.innerRadius 0)
+                  (.outerRadius (/ size 2)))
+          arc-label (let [r (* (/ size 2) 0.8)]
+                      (-> (d3/arc)
+                          (.innerRadius r)
+                          (.outerRadius r)))
+          color (d3/scaleOrdinal d3/schemeCategory10)
+          arcs (pie data)]
+      [:svg {:viewBox (str (- (/ size 2)) " " (- (/ size 2)) " " size " " size)}
+       (map-indexed
+        (fn [idx pie-arc]
+          [:g {:key idx}
+           [:path {:d (arc pie-arc) :fill (color (:name (.-data pie-arc)))}]
+           (when (> (- ^js (.-endAngle pie-arc) ^js (.-startAngle pie-arc)) 0.25)
+             [:text.text-xs
+              {:transform (str "translate(" (.centroid arc-label pie-arc) ")") :text-anchor "middle"}
+              (:name (.-data pie-arc))])])
+        arcs)])})
 
 (def pack
   {:title "Circle Packing"
@@ -257,28 +255,64 @@
           (.links root))]]))
    :code
    '(let [size 300
-           root ((-> (d3/tree)
-                     (.size (into-array [size size])))
-                 (-> (d3/hierarchy data)))]
-       [:svg {:viewBox (str 0 " " 0 " " size " " size)}
-        [:g
-         (map-indexed
-          (fn [idx node]
-            [:circle {:key idx :cx (.-x node) :cy (.-y node) :r 2}])
-          (.descendants root))]
-        [:g
-         (map-indexed
-          (fn [idx link]
-            [:path {:key idx
-                    :fill "transparent"
-                    :stroke "black"
-                    :d ((-> (d3/linkVertical)
-                            (.x (fn [d] (.-x d)))
-                            (.y (fn [d] (.-y d))))
-                        link)}])
-          (.links root))]])})
+          root ((-> (d3/tree)
+                    (.size (into-array [size size])))
+                (-> (d3/hierarchy data)))]
+      [:svg {:viewBox (str 0 " " 0 " " size " " size)}
+       [:g
+        (map-indexed
+         (fn [idx node]
+           [:circle {:key idx :cx (.-x node) :cy (.-y node) :r 2}])
+         (.descendants root))]
+       [:g
+        (map-indexed
+         (fn [idx link]
+           [:path {:key idx
+                   :fill "transparent"
+                   :stroke "black"
+                   :d ((-> (d3/linkVertical)
+                           (.x (fn [d] (.-x d)))
+                           (.y (fn [d] (.-y d))))
+                       link)}])
+         (.links root))]])})
 
-(def code (:code bar))
+(def world-map
+  {:title "World Map"
+   :data (r/atom [])
+   :chart
+   (fn [data]
+     (let [size 393
+           color (d3/scaleOrdinal d3/schemeCategory10)
+           path (-> (d3/geoPath)
+                    (-> (.projection
+                         (-> (d3/geoMercator)
+                             #_(.scale 100)))))]
+       [:div {:style {:height size :display "flex"
+                      :flex-direction "column"
+                      :justify-content "center"}}
+        [:svg {:viewBox (str 0 " " 0 " " 1000 " " 650)}
+         [:g {:transform "translate(0, 200)"}
+          (map-indexed
+           (fn [idx country] [:path {:key idx :d (path country)
+                                     :fill (color idx)}])
+           ^js (.-features data))]]]))
+   :code
+   '(let [size 393
+          color (d3/scaleOrdinal d3/schemeCategory10)
+          path (-> (d3/geoPath)
+                   (-> (.projection
+                        (-> (d3/geoMercator)
+                            #_(.scale 100)))))]
+      [:div {:style {:height size :display "flex"
+                     :flex-direction "column"
+                     :justify-content "center"}}
+       [:svg {:viewBox (str 0 " " 0 " " 1000 " " 650)}
+        [:g {:transform "translate(0, 200)"}
+         (map-indexed
+          (fn [idx country] [:path {:key idx :d (path country)
+                                    :fill (color idx)}])
+          ^js (.-features data))]]])})
+
 (defn card [children]
   [:div.shadow-lg.border.md:rounded-xl.bg-white.w-full.mb-2.md:mr-16.md:mb-16 {:class "md:w-5/12"}
    children])
@@ -357,7 +391,6 @@
     [:h2.text-3xl.mb-7.font-semibold.tracking-wide
      "Following soon"]
     [:ul.list-disc.list-inside
-     [:li.mb-2.underline [:a {:href "https://observablehq.com/@d3/world-airports?collection=@d3/d3-geo"} "World Map"]]
      [:li.mb-2.underline [:a {:href "https://observablehq.com/@d3/sankey-diagram?collection=@d3/d3-sankey"} "Sankey"]]
      [:li.mb-2.underline [:a {:href "https://observablehq.com/@d3/force-directed-graph?collection=@d3/d3-force"} "Force-Directed Graph"]]
      [:li.mb-2.underline [:a {:href "https://observablehq.com/@d3/sunburst?collection=@d3/d3-hierarchy"} "Sunburst"]]
@@ -385,7 +418,9 @@
       (.then (fn [res]
                (reset! (:data pack) res)
                (reset! (:data tree) res))))
-    (fn []
+  (-> (fetch-json "data/countries.json")
+      (.then (fn [res] (reset! (:data world-map) res))))
+  (fn []
     [:div.text-gray-900.flex.flex-col.h-screen
      [:header.border-b.bg-gradient-to-b.from-gray-600.to-gray-900
       [:div.px-6.py-4.max-w-7xl.mx-auto
@@ -407,6 +442,7 @@
        [chart-container pie]
        [chart-container pack]
        [chart-container tree]
+       [chart-container world-map]
        [chart-container line]
        [following-soon]]]
      [:footer.bg-gray-800.flex.justify-center.py-2
